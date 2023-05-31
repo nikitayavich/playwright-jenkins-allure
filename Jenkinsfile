@@ -9,8 +9,9 @@ pipeline {
          }
       }
       stage('e2e-tests'){
-         bat  "npx playwright test"
-
+         steps{
+            bat  "npx playwright test"
+         }       
       }
       stage('Test reports') {
          steps {
