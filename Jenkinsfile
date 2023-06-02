@@ -1,12 +1,15 @@
 def stageFunction(command, count = 0) {
+   def count = 0
    catchError {
       try {
          bat command
+         break
       } catch (Exception e) {
          def errorMessage = e.getMessage()
          if (errorMessage.contains('Timed out 5000ms waiting for expect(received).toHaveTitle(expected)') && count < 3) {
             echo "Retrying... (Attempts remaining: ${3 - count})"
-            stageFunction(command, count + 1)
+            count++
+            stageFunction(command, count)
          } else {
             currentBuild.result = 'FAILURE'
             error("Failed after retries: ${errorMessage}", e)
