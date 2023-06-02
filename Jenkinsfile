@@ -3,19 +3,19 @@ def stageFunction(command) {
    while (count < 3) {
       try {
          catchError {
-             bat command
-         } catch (Exception e) {
-            def errorMessage = e.getMessage()
-            if (errorMessage.contains('toHaveTitle')) {
-               echo 'CATCH IF BLOCK----------------------------------------------------------------------'
-               count++
-            } else {
-               count = 3
-               echo 'CATCH ELSE BLOCK----------------------------------------------------------------------'
-               currentBuild.result = 'FAILURE'
-               error(e)
-               throw e
-            }
+            bat command
+         }
+      }catch (Exception e) {
+         def errorMessage = e.getMessage()
+         if (errorMessage.contains('toHaveTitle')) {
+            echo 'CATCH IF BLOCK----------------------------------------------------------------------'
+            count++
+         } else {
+            count = 3
+            echo 'CATCH ELSE BLOCK----------------------------------------------------------------------'
+            currentBuild.result = 'FAILURE'
+            error(e)
+            throw e
          }
       }
    }
