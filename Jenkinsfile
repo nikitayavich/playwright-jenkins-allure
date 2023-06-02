@@ -2,12 +2,12 @@ def stageFunction(count = 0) {
    catchError {
       try {
          bat ""'npx playwright test'""
-                     } catch (Exception e) {
+      } catch (Exception e) {
          def errorMessage = e.getMessage()
          if (errorMessage.contains('Timed out 5000ms waiting for expect(received).toHaveTitle(expected)') && count < 3) {
             echo "Retrying... (Attempts remaining: ${3 - count})"
             stageFunction(count + 1)
-                        } else {
+         } else {
             throw e
          }
       }
