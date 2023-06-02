@@ -3,6 +3,7 @@ def stageFunction(command) {
    while (count < 3) {
       try {
          bat command
+         break
       }catch (Throwable t) {
          def errorMessage = t.getMessage()
          if (errorMessage.contains('toHaveTitle')) {
@@ -11,6 +12,7 @@ def stageFunction(command) {
          } else {
             count = 3
             echo 'CATCH ELSE BLOCK----------------------------------------------------------------------'
+            echo errorMessage
             currentBuild.result = 'FAILURE'
             error(errorMessage)
             throw t
