@@ -6,7 +6,7 @@ def stageFunction(command, count = 0) {
          def errorMessage = e.getMessage()
          if (errorMessage.contains('Timed out 5000ms waiting for expect(received).toHaveTitle(expected)') && count < 3) {
             echo "Retrying... (Attempts remaining: ${3 - count})"
-            stageFunction(count + 1)
+            stageFunction(command, count + 1)
          } else {
             throw e
          }
