@@ -1,20 +1,20 @@
-def stageFunction(command, count = 0) {
-   
-   catchError {
-      try {
-         bat command
-         
-      } catch (Exception e) {
-         def errorMessage = e.getMessage()
-         if (errorMessage.contains('Timed out 5000ms waiting for expect(received).toHaveTitle(expected)') && count < 3) {
-            echo "Retrying... (Attempts remaining: ${3 - count})"
-            count++
-            echo count
-            stageFunction(command, count)
-         } else {
-            currentBuild.result = 'FAILURE'
-            error(e)
-            throw e
+def stageFunction(command) {
+   while (count < 3) {
+      catchError {
+         try {
+            bat command
+         } catch (Exception e) {
+            def errorMessage = e.getMessage()
+            if (errorMessage.contains('Timed out 5000ms waiting for expect(received).toHaveTitle(expected)')) {
+               echo 'CATCH IF BLOCK----------------------------------------------------------------------'
+               count++
+            } else {
+               count = 3
+               echo 'CATCH ELSE BLOCK----------------------------------------------------------------------'
+               currentBuild.result = 'FAILURE'
+               error(e)
+               throw e
+            }
          }
       }
    }
