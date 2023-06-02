@@ -5,8 +5,8 @@ def stageFunction(command) {
          catchError {
             bat command
          }
-      }catch (Exception e) {
-         def errorMessage = e.getMessage()
+      }catch (Throwable t) {
+         def errorMessage = t.getMessage()
          if (errorMessage.contains('toHaveTitle')) {
             echo 'CATCH IF BLOCK----------------------------------------------------------------------'
             count++
