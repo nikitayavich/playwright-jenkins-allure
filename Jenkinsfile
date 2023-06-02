@@ -14,8 +14,8 @@ def stageFunction(command) {
             count = 3
             echo 'CATCH ELSE BLOCK----------------------------------------------------------------------'
             currentBuild.result = 'FAILURE'
-            error(e)
-            throw e
+            error(t)
+            throw t
          }
       }
    }
