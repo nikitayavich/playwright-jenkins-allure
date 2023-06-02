@@ -8,6 +8,7 @@ def stageFunction(command, count = 0) {
             echo "Retrying... (Attempts remaining: ${3 - count})"
             stageFunction(command, count + 1)
          } else {
+            currentBuild.result = 'FAILURE'
             throw e
          }
       }
