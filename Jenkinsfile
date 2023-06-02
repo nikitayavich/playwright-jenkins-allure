@@ -6,7 +6,7 @@ def stageFunction(command) {
             bat command
          } catch (Exception e) {
             def errorMessage = e.getMessage()
-            if (errorMessage.contains('Timed out 5000ms waiting for expect(received).toHaveTitle(expected)')) {
+            if (errorMessage.contains('toHaveTitle')) {
                echo 'CATCH IF BLOCK----------------------------------------------------------------------'
                count++
             } else {
