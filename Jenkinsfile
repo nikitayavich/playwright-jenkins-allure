@@ -1,9 +1,9 @@
 def stageFunction(command) {
    def count = 0
    while (count < 3) {
-      catchError {
-         try {
-            bat command
+      try {
+         catchError {
+             bat command
          } catch (Exception e) {
             def errorMessage = e.getMessage()
             if (errorMessage.contains('toHaveTitle')) {
