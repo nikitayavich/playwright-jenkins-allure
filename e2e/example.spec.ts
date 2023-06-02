@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
 test.describe('first suite', () => {
   test('check the tab title and the URL of the page', async ({ page }) => {
     allure.suite('Example of allure suite')
-    await expect(page).toHaveTitle('OTTO - Mode, Möbel & Technik » Zum Online-Shop')
+    await expect(page).toHaveTitle('oOTTO - Mode, Möbel & Technik » Zum Online-Shop')
     await expect(page).toHaveURL(/.*otto.de/)
 
   })
