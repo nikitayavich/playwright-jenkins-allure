@@ -9,6 +9,7 @@ def stageFunction(command, count = 0) {
             stageFunction(command, count + 1)
          } else {
             currentBuild.result = 'FAILURE'
+            error("Failed after retries: ${errorMessage}", e)
             throw e
          }
       }
