@@ -13,6 +13,7 @@ def stageFunction(command) {
             count = 3
             echo 'CATCH ELSE BLOCK----------------------------------------------------------------------'
             echo errorMessage
+            echo 'CATCH ELSE BLOCK----------------------------------------------------------------------'
             currentBuild.result = 'FAILURE'
             error(errorMessage)
             throw t
