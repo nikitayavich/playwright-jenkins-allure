@@ -1,4 +1,5 @@
 def stageFunction(command) {
+   def count = 0
    while (count < 3) {
       catchError {
          try {
