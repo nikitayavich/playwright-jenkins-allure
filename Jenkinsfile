@@ -35,8 +35,8 @@ pipeline {
             stage('B') {
                steps {
                   script {
-                     def commandA = 'npx playwright test --project="firefox"'
-                     stageFunction(commandA)
+                     def commandB = 'npx playwright test --project="firefox"'
+                     stageFunction(commandB)
                   }
                }
             }
