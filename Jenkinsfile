@@ -1,7 +1,7 @@
-def stageFunction(count = 0) {
+def stageFunction(command, count = 0) {
    catchError {
       try {
-         bat 'npx playwright test'
+         bat command
       } catch (Exception e) {
          def errorMessage = e.getMessage()
          if (errorMessage.contains('Timed out 5000ms waiting for expect(received).toHaveTitle(expected)') && count < 3) {
@@ -27,14 +27,16 @@ pipeline {
             stage('A') {
                steps {
                   script {
-                     stageFunction()
+                     def commandA = 'npx playwright test --project="chromium"'
+                     stageFunction(commandA)
                   }
                }
             }
             stage('B') {
                steps {
                   script {
-                     stageFunction()
+                     def commandA = 'npx playwright test --project="firefox"'
+                     stageFunction(commandA)
                   }
                }
             }
