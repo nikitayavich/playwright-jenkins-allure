@@ -23,10 +23,20 @@ pipeline {
          }
       }
       stage('e2e-tests') {
-         steps {
-            script {
-
-               stageFunction()
+         parallel {
+            stage('A') {
+               steps {
+                  script {
+                     stageFunction()
+                  }
+               }
+            }
+            stage('B') {
+               steps {
+                  script {
+                     stageFunction()
+                  }
+               }
             }
          }
       }
