@@ -5,10 +5,12 @@ def stageFunction(command) {
          bat command
          break
       }catch (Throwable t) {
-         def errorMessage = t.getMessage()         
+         def errorMessage = t.getMessage()
          StackTraceElement[] stackTrace = t.getStackTrace()
          for (StackTraceElement element : stackTrace) {
+            echo 'STACK TRACE IS COMING----------------------------------------------------------------------'
             echo element.toString()
+            echo 'STACK TRACE IS COMING----------------------------------------------------------------------'
          }
          if (errorMessage.contains('script returned exit code 2')) {
             echo 'CATCH IF BLOCK----------------------------------------------------------------------'
