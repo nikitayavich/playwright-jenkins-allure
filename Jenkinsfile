@@ -5,17 +5,19 @@ def stageFunction(command) {
          bat command
          break
       }catch (Throwable t) {
-
          // def errorMessage = t.getMessage()
          // StackTraceElement[] stackTrace = t.getStackTrace()
          def logData = bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\%JOB_NAME%\\builds\\%BUILD_NUMBER%\\log')
-            if (logData.contains('toHaveTitle')) {
-                echo "Found 'myTestString' in the console log"
-                // Perform additional actions or steps based on the condition
-            } else {
-                echo "Did not find 'myTestString' in the console log"
-                // Perform alternative actions or steps based on the condition
-            }
+         if (logData.contains('toHaveTitle')) {
+            echo 'Found expected text in the console log'
+            count++
+         } else {
+            echo 'Did not find expected text in the console log'
+            count = 3
+            currentBuild.result = 'FAILURE'
+            error(errorMessage)
+            throw t
+         }
       // for (StackTraceElement element : stackTrace) {
       //    echo 'STACK TRACE IS COMING----------------------------------------------------------------------'
       //    echo element.toString()
