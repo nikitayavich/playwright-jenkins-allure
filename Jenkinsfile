@@ -13,8 +13,8 @@ def stageFunction(command) {
          bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\%JOB_NAME%\\builds\\%BUILD_NUMBER%\\log') { output ->
             logData = output.trim()
          }
-         
-         def occurrenceCount = logData.tokenize('\n').count { line ->
+
+         occurrenceCount = logData.tokenize('\n').count { line ->
             line.contains(searchString)
          }
          echo "Found $occurrenceCount occurrences of '$searchString' in the console log"
