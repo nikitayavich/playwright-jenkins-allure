@@ -5,7 +5,7 @@ def stageFunction(command) {
          bat command
          break
       }catch (Throwable t) {
-         def consoleLog = readFile "${env.BUILD_LOG}"
+         def consoleLog = readFile "${BUILD_LOG}"
          def expectedValue = "toHaveTitle"
          // def errorMessage = t.getMessage()
          // StackTraceElement[] stackTrace = t.getStackTrace()
