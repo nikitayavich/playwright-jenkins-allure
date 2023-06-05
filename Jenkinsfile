@@ -5,13 +5,12 @@ def stageFunction(command) {
          bat command
          break
       }catch (Throwable t) {
-         def consoleLog = readFile "${BUILD_LOG}"
-         def expectedValue = 'toHaveTitle'
+
          // def errorMessage = t.getMessage()
          // StackTraceElement[] stackTrace = t.getStackTrace()
          if (manager.logContains('.*toHaveTitle.*')) {
             echo "Found 'myTestString' in the console log"
-            // Perform additional actions or steps based on the condition
+         // Perform additional actions or steps based on the condition
          } else {
             echo "Did not find 'myTestString' in the console log"
          // Perform alternative actions or steps based on the condition
