@@ -10,7 +10,7 @@ def stageFunction(command) {
          for (StackTraceElement element : stackTrace) {
             echo element.toString()
          }
-         if (errorMessage.contains('script returned exit code 1')) {
+         if (errorMessage.contains('script returned exit code 2')) {
             echo 'CATCH IF BLOCK----------------------------------------------------------------------'
             count++
          } else {
