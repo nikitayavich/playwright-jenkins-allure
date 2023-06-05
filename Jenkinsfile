@@ -9,11 +9,12 @@ def stageFunction(command) {
          // StackTraceElement[] stackTrace = t.getStackTrace()
          def logData = bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\%JOB_NAME%\\builds\\%BUILD_NUMBER%\\log')
          if (logData.contains('toHaveTitle')) {
-            echo 'Found expected text in the console log'
             count++
-         } else {
-            echo 'Did not find expected text in the console log'
+            echo "Found expected text in the console log.Attempts remaining: ${3 - count}"
+            
+         } else {            
             count = 3
+            echo "Did not find expected text in the console log. Unexpected error"
             currentBuild.result = 'FAILURE'
             error(errorMessage)
             throw t
