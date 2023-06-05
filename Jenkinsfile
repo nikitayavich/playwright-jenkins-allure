@@ -5,8 +5,7 @@ def stageFunction(command) {
          bat command
          break
       }catch (Throwable t) {
-         def errorMessage = t.getMessage()
-         t.printStackTrace()
+         def errorMessage = t.getMessage()         
          StackTraceElement[] stackTrace = t.getStackTrace()
          for (StackTraceElement element : stackTrace) {
             echo element
@@ -17,7 +16,7 @@ def stageFunction(command) {
          } else {
             count = 3
             echo 'CATCH ELSE BLOCK----------------------------------------------------------------------'
-            echo errorMessage
+            echo errorMessage.toString()
             echo 'CATCH ELSE BLOCK----------------------------------------------------------------------'
             currentBuild.result = 'FAILURE'
             error(errorMessage)
