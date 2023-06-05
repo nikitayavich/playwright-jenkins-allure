@@ -8,7 +8,7 @@ def stageFunction(command) {
          def errorMessage = t.getMessage()         
          StackTraceElement[] stackTrace = t.getStackTrace()
          for (StackTraceElement element : stackTrace) {
-            echo element
+            echo element.toString()
          }
          if (errorMessage.contains('script returned exit code 1')) {
             echo 'CATCH IF BLOCK----------------------------------------------------------------------'
