@@ -1,7 +1,5 @@
 def stageFunction(command) {
    def count = 0
-   def searchString = 'toHaveTitle'
-   def occurrenceCount = 0
    while (count < 3) {
       try {
          bat command
@@ -9,15 +7,7 @@ def stageFunction(command) {
       }catch (Throwable t) {
          def errorMessage = t.getMessage()
          // StackTraceElement[] stackTrace = t.getStackTrace()
-         def logData
-         bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\%JOB_NAME%\\builds\\%BUILD_NUMBER%\\log') { output ->
-            logData = output.trim()
-         }
-
-         occurrenceCount = logData.tokenize('\n').count { line ->
-            line.contains(searchString)
-         }
-         echo "Found $occurrenceCount occurrences of '$searchString' in the console log"
+         def logData = bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\%JOB_NAME%\\builds\\%BUILD_NUMBER%\\log')
          if (logData.contains('toHaveTitle')) {
             count++
             echo "Found expected text in the console log.Attempts remaining: ${3 - count}"
