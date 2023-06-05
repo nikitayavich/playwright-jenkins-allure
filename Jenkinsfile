@@ -8,13 +8,14 @@ def stageFunction(command) {
 
          // def errorMessage = t.getMessage()
          // StackTraceElement[] stackTrace = t.getStackTrace()
-         if (manager.logContains('.*toHaveTitle.*')) {
-            echo "Found 'myTestString' in the console log"
-         // Perform additional actions or steps based on the condition
-         } else {
-            echo "Did not find 'myTestString' in the console log"
-         // Perform alternative actions or steps based on the condition
-         }
+         def logData = bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\%JOB_NAME%\\builds\\%BUILD_NUMBER%\\log')
+            if (logData.contains('toHaveTitle')) {
+                echo "Found 'myTestString' in the console log"
+                // Perform additional actions or steps based on the condition
+            } else {
+                echo "Did not find 'myTestString' in the console log"
+                // Perform alternative actions or steps based on the condition
+            }
       // for (StackTraceElement element : stackTrace) {
       //    echo 'STACK TRACE IS COMING----------------------------------------------------------------------'
       //    echo element.toString()
