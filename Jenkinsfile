@@ -6,6 +6,11 @@ def stageFunction(command) {
          break
       }catch (Throwable t) {
          def errorMessage = t.getMessage()
+         t.printStackTrace()
+         StackTraceElement[] stackTrace = t.getStackTrace()
+         for (StackTraceElement element : stackTrace) {
+            echo element
+         }
          if (errorMessage.contains('script returned exit code 1')) {
             echo 'CATCH IF BLOCK----------------------------------------------------------------------'
             count++
