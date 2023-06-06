@@ -43,16 +43,20 @@ pipeline {
             stage('A') {
                steps {
                   script {
-                     def commandA = 'npx playwright test --project="chromium"'
-                     stageFunction(commandA)
+                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        def commandA = 'npx playwright test --project="chromium"'
+                        stageFunction(commandA)
+                     }
                   }
                }
             }
             stage('B') {
                steps {
                   script {
-                     def commandB = 'npx playwright test --project="firefox"'
-                     stageFunction(commandB)
+                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        def commandB = 'npx playwright test --project="firefox"'
+                        stageFunction(commandB)
+                     }
                   }
                }
             }
