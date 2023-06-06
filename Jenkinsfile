@@ -8,8 +8,6 @@ def getFolderName(jobName) {
    }
 }
 
-def folderName = getFolderName('feature/123')
-
 def stageFunction(command) {
    def errorForSearch = 'Timed out 5000ms waiting for'
    def countForRetry = 0
@@ -23,6 +21,7 @@ def stageFunction(command) {
          echo "Jenkins HOME: ${env.JENKINS_HOME}"
          echo "JOB NAME: ${env.JOB_NAME}"
          echo "JOB URL: ${env.JOB_URL}"
+         def folderName = getFolderName('feature/jenkinsfile-refactoring')
          echo folderName
          def logData = bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\12345\\jobs\\123456\\jobs\\1234567\\branches\\feature-123.v2cok5\\builds\\%BUILD_NUMBER%\\log')
          def logDataForParse = logData.trim()
