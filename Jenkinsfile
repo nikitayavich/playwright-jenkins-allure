@@ -1,5 +1,5 @@
 def stageFunction(command) {
-   def errorForSearch = 'expect.toHaveURL with timeout 5000ms'
+   def errorForSearch = 'Timed out 5000ms waiting for'
    def countForRetry = 0
    def searchStringCountBefore = 0
    while (countForRetry < 3) {
