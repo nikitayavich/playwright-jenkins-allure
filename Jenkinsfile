@@ -15,7 +15,7 @@ def stageFunction(command) {
          def searchStringCountAfter = logDataForParse.tokenize('\n').count { line ->
             line.contains(errorForSearch)
          }
-         echo "The string '$errorForSearch' appears $searchStringCountAfter times in the console log"
+         echo "The ERROR message appears $searchStringCountAfter times in the console log"
          if (searchStringCountAfter > searchStringCountBefore) {
             countForRetry++
             searchStringCountBefore = searchStringCountAfter
