@@ -11,7 +11,7 @@ def stageFunction(command) {
          echo "Jenkins HOME: ${env.JENKINS_HOME}"
          echo "JOB NAME: ${env.JOB_NAME}"
          echo "JOB URL: ${env.JOB_URL}"
-         def logData = bat(returnStdout: true, script: "curl -s ${env.JOB_URL}/${env.BUILD_NUMBER}/consoleText")
+         def logData = bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\12345\\jobs\\123456\\jobs\\1234567\\branches\\feature-123.v2cok5\\builds\\%BUILD_NUMBER%\\log')
          def logDataForParse = logData.trim()
          def searchStringCountAfter = logDataForParse.tokenize('\n').count { line ->
             line.contains(errorForSearch)
