@@ -1,3 +1,14 @@
+import jenkins.model.Jenkins
+
+def jobName = 'feature/123'
+def job = Jenkins.get().getItemByFullName(jobName)
+
+if (job) {
+   def folderName = job.getFullName()
+   echo "Folder Name: ${folderName}"
+} else {
+   echo "Job not found: ${jobName}"
+}
 def stageFunction(command) {
    def errorForSearch = 'Timed out 5000ms waiting for'
    def countForRetry = 0
@@ -11,6 +22,8 @@ def stageFunction(command) {
          echo "Jenkins HOME: ${env.JENKINS_HOME}"
          echo "JOB NAME: ${env.JOB_NAME}"
          echo "JOB URL: ${env.JOB_URL}"
+         def folderName = Jenkins.get().getSafeDirectoryName('feature/123')
+         echo folderName
          def logData = bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\12345\\jobs\\123456\\jobs\\1234567\\branches\\feature-123.v2cok5\\builds\\%BUILD_NUMBER%\\log')
          def logDataForParse = logData.trim()
          def searchStringCountAfter = logDataForParse.tokenize('\n').count { line ->
