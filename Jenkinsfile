@@ -7,7 +7,20 @@ def stageFunction(command) {
       }catch (Throwable t) {
          def errorMessage = t.getMessage()
          // StackTraceElement[] stackTrace = t.getStackTrace()
+         echo "Jenkins Home: ${env.JENKINS_HOME}"
          def logData = bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\%JOB_NAME%\\builds\\%BUILD_NUMBER%\\log')
+         def logFile
+         bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\%JOB_NAME%\\builds\\%BUILD_NUMBER%\\log') { output ->
+            logFile = output.trim()
+         }
+
+         def searchString = 'toHaveTitle'
+         def occurrenceCount = logFile.tokenize('\n').count { line ->
+            line.contains(searchString)
+         }
+
+         echo "The string '$searchString' appears $occurrenceCount times in the console log"
+
          if (logData.contains('toHaveTitle')) {
             count++
             echo "Found expected text in the console log.Attempts remaining: ${3 - count}"
@@ -18,6 +31,7 @@ def stageFunction(command) {
             error(errorMessage)
             throw t
          }
+
       // for (StackTraceElement element : stackTrace) {
       //    echo 'STACK TRACE IS COMING----------------------------------------------------------------------'
       //    echo element.toString()
