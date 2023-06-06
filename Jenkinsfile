@@ -26,16 +26,6 @@ def stageFunction(command) {
             error(errorMessage)
             throw t
          }
-      // if (logData.contains(searchString)) {
-      //    countForRetry++
-      //    echo "Found expected text in the console log.Attempts remaining: ${3 - countForRetry}"
-      // } else {
-      //    countForRetry = 3
-      //    echo 'Did not find expected text in the console log. Unexpected error'
-      //    currentBuild.result = 'FAILURE'
-      //    error(errorMessage)
-      //    throw t
-      // }
       }
    }
 }
