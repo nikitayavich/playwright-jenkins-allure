@@ -10,7 +10,7 @@ def stageFunction(command) {
          def errorMessage = t.getMessage()
          echo "Jenkins HOME: ${env.JENKINS_HOME}"
          echo "JOB NAME: ${env.JOB_NAME}"
-         def logData = bat(returnStdout: true, script: "type \"%JENKINS_HOME%\\jobs\\12345\\jobs\\123456\\jobs\\1234567\\branches\\feature\\123\\builds\\%BUILD_NUMBER%\\log\"")
+         def logData = bat(returnStdout: true, script: "type \"${BUILD_LOG}\"")
          def logDataForParse = logData.trim()
          def searchStringCountAfter = logDataForParse.tokenize('\n').count { line ->
             line.contains(errorForSearch)
