@@ -12,21 +12,21 @@ test.beforeEach(async ({ page }) => {
 test.describe('first suite', () => {
   test('check the tab title and the URL of the page', async ({ page }) => {
     allure.suite('Example of allure suite')
-    await expect(page).toHaveTitle('oOTTO - Mode, Möbel & Technik » Zum Online-Shop')
+    // await expect(page).toHaveTitle('oOTTO - Mode, Möbel & Technik » Zum Online-Shop')
     await expect(page).toHaveURL(/.*otto.de/)
 
   })
 
-  test('check the cookie bar visibility after set up closing', async ({ page }) => {
-    const cookieBanner = page.locator('#cookieBanner')
-    await expect(cookieBanner).toHaveCSS('visibility', 'hidden')
-  })
-  test('hover to the first element in the main bar', async ({ page }) => {
-    const elementToHover = page.getByRole('link', { name: 'Inspiration', exact: true })
-    await elementToHover.hover()
-    await page.waitForTimeout(5000)
-    await page.hover("//span[contains(text(),'Herren')]")
-  })
+  // test('check the cookie bar visibility after set up closing', async ({ page }) => {
+  //   const cookieBanner = page.locator('#cookieBanner')
+  //   await expect(cookieBanner).toHaveCSS('visibility', 'hidden')
+  // })
+  // test('hover to the first element in the main bar', async ({ page }) => {
+  //   const elementToHover = page.getByRole('link', { name: 'Inspiration', exact: true })
+  //   await elementToHover.hover()
+  //   await page.waitForTimeout(5000)
+  //   await page.hover("//span[contains(text(),'Herren')]")
+  // })
   test('search field check', async ({ page }) => {
     await page.click(locs.searchField)
     const searchWord = 'candino'

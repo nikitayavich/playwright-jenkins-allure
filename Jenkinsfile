@@ -10,7 +10,6 @@ def stageFunction(command) {
          def errorMessage = t.getMessage()
          echo "Jenkins HOME: ${env.JENKINS_HOME}"
          echo "JOB NAME: ${env.JOB_NAME}"
-         echo "JOB NAME: ${env.BUILD_LOG}"
          def logData = bat(returnStdout: true, script: "curl -s ${env.JOB_URL}/${env.BUILD_NUMBER}/consoleText")
          def logDataForParse = logData.trim()
          def searchStringCountAfter = logDataForParse.tokenize('\n').count { line ->
