@@ -11,7 +11,7 @@ def stageFunction(command) {
          echo "Jenkins Home: ${env.JENKINS_HOME}"
          def logData = bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\%JOB_NAME%\\builds\\%BUILD_NUMBER%\\log')
          def logDataForParse = logData.trim()
-         def searchStringCountAfter = logDataForParse.tokenize('\n').countForRetry { line ->
+         def searchStringCountAfter = logDataForParse.tokenize('\n').count { line ->
             line.contains(errorForSearch)
          }
          echo "The string '$errorForSearch' appears $searchStringCountAfter times in the console log"
