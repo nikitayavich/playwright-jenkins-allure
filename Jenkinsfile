@@ -7,6 +7,7 @@ def stageFunction(command) {
          bat command
          break
       }catch (Throwable t) {
+         echo currentBuild.projectName
          def errorMessage = t.getMessage()
          echo "Jenkins HOME: ${env.JENKINS_HOME}"
          echo "JOB NAME: ${env.JOB_NAME}"
