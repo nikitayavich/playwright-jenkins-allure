@@ -1,5 +1,5 @@
 def stageFunction(command) {
-   def errorForSearch = 'Timed out 5000ms waiting for '
+   def errorForSearch = "Timed out 5000ms waiting for"
    def countForRetry = 0
    def searchStringCountBefore = 0
    while (countForRetry < 3) {
@@ -9,7 +9,7 @@ def stageFunction(command) {
          break
       }catch (Throwable t) {         
          def errorMessage = t.getMessage()         
-         def logData = currentBuild.rawBuild.log         
+         def logData = currentBuild.rawBuild.log
          def searchStringCountAfter = logData.countMatches(errorForSearch)
          echo "The ERROR message appears $searchStringCountAfter times in the console log"
          if (searchStringCountAfter > searchStringCountBefore) {
