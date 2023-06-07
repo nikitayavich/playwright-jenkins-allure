@@ -1,11 +1,10 @@
 def stageFunction(command) {
-   echo 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-   echo currentBuild.rawBuild.log
-   // echo 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
-   // echo currentBuild.rawBuild.getLog(100).toString()
-   // echo 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
-   // echo "JOB NAME: ${env.JOB_NAME}"
-   // echo "JOB URL: ${env.JOB_URL}"
+   echo 'The log output:' + currentBuild.rawBuild.log + 'End of logs'
+// echo 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
+// echo currentBuild.rawBuild.getLog(100).toString()
+// echo 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+// echo "JOB NAME: ${env.JOB_NAME}"
+// echo "JOB URL: ${env.JOB_URL}"
 // def errorForSearch = 'Timed out 5000ms waiting for'
 // def countForRetry = 0
 // def searchStringCountBefore = 0
