@@ -14,15 +14,7 @@ def stageFunction(command) {
          def logData = currentBuild.rawBuild.getLog().toString()
          def searchStringCountAfter = logData.tokenize('\n').count { line ->
             line.contains(errorForSearch)
-         }
-         // def logData = currentBuild.rawBuild.log.map((el)=>{
-         //    el.readToString()
-         // })
-         // def searchStringCountAfter = logData.findAll(errorForSearch).size()
-         // def pattern = Pattern.compile(errorForSearch)
-         // def matcher = pattern.matcher(logData)
-         // def searchStringCountAfter = matcher.results().count()
-         // def searchStringCountAfter = logData.countMatches(errorForSearch)
+         }         
          echo "The ERROR message appears $searchStringCountAfter times in the console log"
          if (searchStringCountAfter > searchStringCountBefore) {
             countForRetry++
