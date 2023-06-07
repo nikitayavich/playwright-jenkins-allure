@@ -9,7 +9,7 @@ def stageFunction(command) {
          break
       }catch (Throwable t) {         
          def errorMessage = t.getMessage()         
-         def logData = currentBuild.rawBuild.log
+         def logData = currentBuild.rawBuild.log.getText()
          def searchStringCountAfter = logData.countMatches(errorForSearch)
          echo "The ERROR message appears $searchStringCountAfter times in the console log"
          if (searchStringCountAfter > searchStringCountBefore) {
