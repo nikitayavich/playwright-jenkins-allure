@@ -11,9 +11,9 @@ def stageFunction(command) {
          break
       }catch (Throwable t) {
          def errorMessage = t.getMessage()
-         def logData = currentBuild.rawBuild.log
+         def logData = currentBuild.rawBuild.getLog().toString()
          def searchStringCountAfter = logData.tokenize('\n').count { line ->
-            line.contains(searchString)
+            line.contains(errorForSearch)
          }
          // def logData = currentBuild.rawBuild.log.map((el)=>{
          //    el.readToString()
