@@ -1,4 +1,5 @@
 def stageFunction(command) {
+   echo currentBuild.rawBuild.log
    def errorForSearch = 'Timed out 5000ms waiting for'
    def countForRetry = 0
    def searchStringCountBefore = 0
@@ -8,6 +9,7 @@ def stageFunction(command) {
          break
       }catch (Throwable t) {
          echo currentBuild.projectName
+         
          def errorMessage = t.getMessage()
          echo "Jenkins HOME: ${env.JENKINS_HOME}"
          echo "JOB NAME: ${env.JOB_NAME}"
