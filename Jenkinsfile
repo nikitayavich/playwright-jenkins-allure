@@ -10,7 +10,7 @@ def stageFunction(command) {
          break
       }catch (Throwable t) {         
          def errorMessage = t.getMessage()         
-         def logData = currentBuild.rawBuild.log.getText()
+         def logData = currentBuild.rawBuild.log
          def pattern = Pattern.compile(errorForSearch)
          def matcher = pattern.matcher(logData)
          def searchStringCountAfter = matcher.results().count()
