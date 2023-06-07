@@ -1,5 +1,8 @@
 def stageFunction(command) {
+   echo "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
    echo currentBuild.rawBuild.log
+   echo currentBuild.rawBuild.getLog(100)
+   echo "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
    // def errorForSearch = 'Timed out 5000ms waiting for'
    // def countForRetry = 0
    // def searchStringCountBefore = 0
