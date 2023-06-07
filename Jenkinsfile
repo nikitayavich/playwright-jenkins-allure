@@ -1,10 +1,11 @@
 def stageFunction(command) {
-   def errorForSearch = 'Test timeout of 30000ms exceeded while running "beforeEach" hook.'
+   def errorForSearch = 'Timed out 5000ms waiting for '
    def countForRetry = 0
    def searchStringCountBefore = 0
    while (countForRetry < 3) {
       try {
          bat command
+         currentBuild.result = 'SUCCESS'
          break
       }catch (Throwable t) {         
          def errorMessage = t.getMessage()         
