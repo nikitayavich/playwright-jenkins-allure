@@ -1,5 +1,5 @@
 def stageFunction(command) {
-   def errorForSearch = 'Timed out 5000ms waiting for'
+   def errorForSearch = 'Test timeout of 30000ms exceeded while running "beforeEach" hook.'
    def countForRetry = 0
    def searchStringCountBefore = 0
    while (countForRetry < 3) {
