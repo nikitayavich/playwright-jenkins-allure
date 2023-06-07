@@ -1,3 +1,4 @@
+import java.util.regex.Pattern
 def stageFunction(command) {
    def errorForSearch = "Timed out 5000ms waiting for"
    def countForRetry = 0
@@ -10,7 +11,10 @@ def stageFunction(command) {
       }catch (Throwable t) {         
          def errorMessage = t.getMessage()         
          def logData = currentBuild.rawBuild.log.getText()
-         def searchStringCountAfter = logData.countMatches(errorForSearch)
+         def pattern = Pattern.compile(errorForSearch)
+         def matcher = pattern.matcher(logData)
+         def searchStringCountAfter = matcher.results().count()
+         // def searchStringCountAfter = logData.countMatches(errorForSearch)
          echo "The ERROR message appears $searchStringCountAfter times in the console log"
          if (searchStringCountAfter > searchStringCountBefore) {
             countForRetry++
