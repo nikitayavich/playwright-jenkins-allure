@@ -1,42 +1,29 @@
 def stageFunction(command) {
-   echo 'The log output:' + currentBuild.rawBuild.log + 'End of logs'
-// echo 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
-// echo currentBuild.rawBuild.getLog(100).toString()
-// echo 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
-// echo "JOB NAME: ${env.JOB_NAME}"
-// echo "JOB URL: ${env.JOB_URL}"
-// def errorForSearch = 'Timed out 5000ms waiting for'
-// def countForRetry = 0
-// def searchStringCountBefore = 0
-// while (countForRetry < 3) {
-//    try {
-//       bat command
-//       break
-//    }catch (Throwable t) {
-//       echo currentBuild.projectName
-//       def errorMessage = t.getMessage()
-//       echo "Jenkins HOME: ${env.JENKINS_HOME}"
-//       echo "JOB NAME: ${env.JOB_NAME}"
-//       echo "JOB URL: ${env.JOB_URL}"
-//       def logData = bat(returnStdout: true, script: 'type %JENKINS_HOME%\\jobs\\12345\\jobs\\123456\\jobs\\1234567\\branches\\feature-jenk.fl12be.-refactoring\\builds\\%BUILD_NUMBER%\\log')
-//       def logDataForParse = logData.trim()
-//       def searchStringCountAfter = logDataForParse.tokenize('\n').count { line ->
-//          line.contains(errorForSearch)
-//       }
-//       echo "The ERROR message appears $searchStringCountAfter times in the console log"
-//       if (searchStringCountAfter > searchStringCountBefore) {
-//          countForRetry++
-//          searchStringCountBefore = searchStringCountAfter
-//          echo "Found expected ERROR text in the console log.Attempts remaining: ${3 - countForRetry}"
-//       } else {
-//          countForRetry = 3
-//          echo 'Did not find expected ERROR text in the console log. Unexpected error'
-//          currentBuild.result = 'FAILURE'
-//          error(errorMessage)
-//          throw t
-//       }
-//    }
-// }
+   def errorForSearch = 'Timed out 5000ms waiting for'
+   def countForRetry = 0
+   def searchStringCountBefore = 0
+   while (countForRetry < 3) {
+      try {
+         bat command
+         break
+      }catch (Throwable t) {         
+         def errorMessage = t.getMessage()         
+         def logData = currentBuild.rawBuild.log         
+         def searchStringCountAfter = logData.countMatches(errorForSearch)
+         echo "The ERROR message appears $searchStringCountAfter times in the console log"
+         if (searchStringCountAfter > searchStringCountBefore) {
+            countForRetry++
+            searchStringCountBefore = searchStringCountAfter
+            echo "Found expected ERROR text in the console log.Attempts remaining: ${3 - countForRetry}"
+         } else {
+            countForRetry = 3
+            echo 'Did not find expected ERROR text in the console log. Unexpected error'
+            currentBuild.result = 'FAILURE'
+            error(errorMessage)
+            throw t
+         }
+      }
+   }
 }
 pipeline {
    agent any
