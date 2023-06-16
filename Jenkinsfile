@@ -1,62 +1,68 @@
-import java.util.regex.Pattern
-
-def stageFunction(command) {
-   def errorForSearch = 'Timed out 5000ms waiting for'
-   def countForRetry = 0
-   def searchStringCountBefore = 0
-   while (countForRetry < 3) {
-      try {
-         bat command
-         currentBuild.result = 'SUCCESS'
-         break
-      }catch (Throwable t) {
-         def errorMessage = t.getMessage()
-         def logData = currentBuild.rawBuild.getLog().toString()
-         def searchStringCountAfter = logData.tokenize('\n').count { line ->
-            line.contains(errorForSearch)
-         }         
-         echo "The ERROR message appears $searchStringCountAfter times in the console log"
-         if (searchStringCountAfter > searchStringCountBefore) {
-            countForRetry++
-            searchStringCountBefore = searchStringCountAfter
-            echo "Found expected ERROR text in the console log.Attempts remaining: ${3 - countForRetry}"
-         } else {
-            countForRetry = 3
-            echo 'Did not find expected ERROR text in the console log. Unexpected error'
-            currentBuild.result = 'FAILURE'
-            error(errorMessage)
-            throw t
-         }
-      }
-   }
-}
 pipeline {
-   agent any
+   agent { node { label 'tse-agent-latest' } }
+   parameters {
+      string defaultValue: '', description: 'Environment URL for running tests', name: 'STAGING'
+      string defaultValue: '', description: 'Domain for test user accounts', name: 'DOMAIN'
+      string defaultValue: '', description: 'Suite for running tests', name: 'SUITE'
+    }
    stages {
-      stage('Installation') {
+      stage('Clear test reports'){
          steps {
-            bat 'npm install'
-            bat 'npx playwright install'
+            sh(""" rm -rf $WORKSPACE/allure-results """)
+            sh(""" rm -rf $WORKSPACE/allure-report """)
          }
       }
-      stage('e2e-tests') {
+      stage('Installation'){
+         steps {
+            sh 'npm install'
+            sh 'npx playwright install'
+         }
+      }
+      stage('e2e-tests'){
          parallel {
-            stage('A') {
+            stage('webkit') {
                steps {
-                  script {
-                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        def commandA = 'npx playwright test --project="chromium"'
-                        stageFunction(commandA)
-                     }
+                  catchError(stageResult: 'FAILURE') {
+                     sh  """ npx playwright test --project="webkit" --grep-invert='@serial' $SUITE """
                   }
                }
             }
-            stage('B') {
+            stage('chromium') {
                steps {
-                  script {
-                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        def commandB = 'npx playwright test --project="firefox"'
-                        stageFunction(commandB)
+                  catchError(stageResult: 'FAILURE') {
+                     sh  """ npx playwright test --project="chromium" --grep-invert='@serial' $SUITE """
+                  }
+               }
+            }
+            stage('firefox') {
+               steps {
+                  catchError(stageResult: 'FAILURE') {
+                     sh  """ npx playwright test --project="firefox" --grep-invert='@serial' $SUITE """
+                     
+                  }
+               }
+            }
+            stage('serial') {
+               stages {
+                 stage('webkit') {
+                     steps {
+                        catchError(stageResult: 'FAILURE') {
+                           sh  """ npx playwright test --workers=1 --project="webkit" --grep='@serial' $SUITE """
+                        }
+                     }
+                  }
+                 stage('chromium') {
+                     steps {
+                        catchError(stageResult: 'FAILURE') {
+                           sh  """ npx playwright test --workers=1 --project="chromium" --grep='@serial' $SUITE """
+                        }
+                     }
+                  }
+                 stage('firefox') {
+                     steps {
+                        catchError(stageResult: 'FAILURE') {
+                           sh  """ npx playwright test --workers=1 --project="firefox" --grep='@serial' $SUITE """
+                        }
                      }
                   }
                }
@@ -67,6 +73,11 @@ pipeline {
          steps {
             allure([includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']]])
          }
+      }
+   }
+   post {
+      failure {
+         emailext body: '$DEFAULT_CONTENT', recipientProviders: [requestor()], subject: "Allure Report", to: "autotests.reports@zextras.com"
       }
    }
 }

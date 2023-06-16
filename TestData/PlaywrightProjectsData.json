@@ -1,0 +1,187 @@
+{
+  "baseURL":
+    {
+      "QA": "https://qa-public1.demo.zextras.io/",
+      "adminPort": "6071",
+      "adminEndpoint": "carbonioAdmin"
+    },
+  "domain":
+    {
+      "QA": "demo.zextras.io"
+    },
+  "users":
+    {
+      "test0":
+        {
+          "login": "test100",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test1":
+        {
+          "login": "test101",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test2":
+        {
+          "login": "test102",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test3":
+        {
+          "login": "test103",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test4":
+        {
+          "login": "test104",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test5":
+        {
+          "login": "test105",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test6":
+        {
+          "login": "test106",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test7":
+        {
+          "login": "test107",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test8":
+        {
+          "login": "test108",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test9":
+        {
+          "login": "test109",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test10":
+        {
+          "login": "test110",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+        "test11":
+        {
+          "login": "test111",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test12":
+        {
+          "login": "test112",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test13":
+        {
+          "login": "test113",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test14":
+        {
+          "login": "test114",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+        "test15":
+        {
+          "login": "test115",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test16":
+        {
+          "login": "test116",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test17":
+        {
+          "login": "test117",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test18":
+        {
+          "login": "test118",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+        "test19":
+        {
+          "login": "test119",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test20":
+        {
+          "login": "test120",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test21":
+        {
+          "login": "test121",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test22":
+        {
+          "login": "test122",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+        "test23":
+        {
+          "login": "test123",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test24":
+        {
+          "login": "test124",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test25":
+        {
+          "login": "test125",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test26":
+        {
+          "login": "test126",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+        "test27":
+        {
+          "login": "test127",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test28":
+        {
+          "login": "test128",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        },
+      "test29":
+        {
+          "login": "test129",
+          "password": "812feee9-c08e-4ec5-9734-07f6e7a6b096"
+        }
+    },
+  "adminUsers":
+    {
+      "zextras":
+        {
+          "login": "zextras",
+          "password": "assext"
+        }
+    },
+    "urlParts":
+    {
+      "Files": 
+      {
+      "trashElements": "https://qa-public1.demo.zextras.io/carbonio/files/filter/myTrash",
+      "filtersFlagged": "https://qa-public1.demo.zextras.io/carbonio/files/filter/flagged",
+      "filtersSharedByMe": "https://qa-public1.demo.zextras.io/carbonio/files/filter/sharedByMe",
+      "trashSharedElements": "https://qa-public1.demo.zextras.io/carbonio/files/filter/sharedTrash",
+      "uploads": "https://qa-public1.demo.zextras.io/carbonio/files/uploads",
+      "sharedWithMe": "https://qa-public1.demo.zextras.io/carbonio/files/filter/sharedWithMe",
+      "home": "https://qa-public1.demo.zextras.io/carbonio/files/root/LOCAL_ROOT"
+      }
+    },
+  "storageState": "./storageState.json"
+}

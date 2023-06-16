@@ -1,0 +1,55 @@
+{
+  "cookies": [
+    {
+      "sameSite": "Lax",
+      "name": "UI",
+      "value": "iris",
+      "domain": "qa-public1.demo.zextras.io",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false
+    },
+    {
+      "sameSite": "Lax",
+      "name": "ZM_ADMIN_AUTH_TOKEN",
+      "value": "0_d47bcc46674b95fdac862fbb31a45351f2a22a1a_69643d33363a36653736306232662d626163322d343562622d383034372d3363626439623030353465643b6578703d31333a313637323838303538353839393b61646d696e3d313a313b76763d313a303b747970653d363a7a696d6272613b753d313a613b7469643d31303a313738343338303531383b637372663d313a313b",
+      "domain": "qa-public1.demo.zextras.io",
+      "path": "/",
+      "expires": 1672880584.745247,
+      "httpOnly": true,
+      "secure": true
+    },
+    {
+      "sameSite": "Lax",
+      "name": "_pk_id.3.1f37",
+      "value": "bbb504a1b1543c8f.1672837388.",
+      "domain": "qa-public1.demo.zextras.io",
+      "path": "/",
+      "expires": 1706792588,
+      "httpOnly": false,
+      "secure": false
+    },
+    {
+      "sameSite": "Lax",
+      "name": "_pk_ses.3.1f37",
+      "value": "1",
+      "domain": "qa-public1.demo.zextras.io",
+      "path": "/",
+      "expires": 1672839188,
+      "httpOnly": false,
+      "secure": false
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://qa-public1.demo.zextras.io:6071",
+      "localStorage": [
+        {
+          "name": "i18nextLng",
+          "value": "en-US"
+        }
+      ]
+    }
+  ]
+}

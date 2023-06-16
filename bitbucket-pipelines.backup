@@ -1,0 +1,107 @@
+pipelines:
+  default:
+  - parallel:
+    - step:
+        name: UI Tests Chromium
+        image: mcr.microsoft.com/playwright:v1.22.0-focal
+        script:
+          - if [[ $UITESTS  == "true" ]]; then
+          - npm install
+          - npx playwright install
+          - npx playwright test --project="chromium"
+          - fi
+          - if [[ $UITESTS == "false" ]]; then echo "UI TEsts was skipped"; fi
+        services:
+          - docker
+        artifacts:
+          - playwright-report/**.*
+    - step:
+        name: UI Tests Firefox
+        image: mcr.microsoft.com/playwright:v1.22.0-focal
+        script:
+          - if [[ $UITESTS  == "true" ]]; then
+          - npm install
+          - npx playwright install
+          - npx playwright test --project="firefox"
+          - fi
+          - if [[ $UITESTS == "false" ]]; then echo "UI TEsts was skipped"; fi
+        services:
+          - docker
+        artifacts:
+          - playwright-report/**.*
+    - step:
+        name: UI Tests Webkit
+        image: mcr.microsoft.com/playwright:v1.22.0-focal
+        script:
+          - if [[ $UITESTS  == "true" ]]; then
+          - npm install
+          - npx playwright install
+          - npx playwright test --project="webkit"
+          - fi
+          - if [[ $UITESTS == "false" ]]; then echo "UI TEsts was skipped"; fi
+        services:
+          - docker
+        artifacts:
+          - playwright-report/**.*
+        # after-script:
+        #   - ALERT_TYPE="success"
+        #   - if [[ BITBUCKET_EXIT_CODE -ne 0 ]]; then ALERT_TYPE="UI Autotests failed" ; fi
+        #   -  pipe: atlassian/email-notify:0.7.0 
+        #      variables: 
+        #        USERNAME: 'andrei.artsiukouski@zextras.com' 
+        #        PASSWORD: $PASSWORD 
+        #        FROM: 'andrei.artsiukouski@zextras.com' 
+        #        TO: 'andrei.artsiukouski@zextras.com' 
+        #        HOST: 'smtp.ttrodev.co.za'
+        #        SUBJECT: '${ALERT_TYPE} for bild ${BITBUCKET_BUILD_NUMBER}:Bitbucket Pipe Notification for ${BITBUCKET_BRANCH}'
+        #        ATTACHMENTS: 'playwright-report/index.html'    
+    # - step:
+    #     name: Frontend Performance Tests
+    #     image: mcr.microsoft.com/playwright:v1.22.0-focal
+    #     script:
+    #       - if [[ $FRONTEND_PERFORMANCE  == "true" ]]; then
+    #       - npm install
+    #       - npx playwright install
+    #       - npx playwright test PerformanceTests/
+    #       - fi
+    #       - if [[ $FRONTEND_PERFORMANCE == "false" ]]; then echo "Frontend performance test was skipped"; fi
+    #     services:
+    #       - docker
+    #     after-script:
+    #       - ALERT_TYPE="success"
+    #       - if [[ BITBUCKET_EXIT_CODE -ne 0 ]]; then 
+    #       - ALERT_TYPE="Frontend Performance Autotests failed"
+    #       - zipfile="lighthouse.zip"
+    #       - dir="lighthouse"
+    #       - apt-get update
+    #       - apt-get -qq install zip curl
+    #       - zip -r $zipfile $dir
+    #       - fi
+    #       -  pipe: atlassian/email-notify:0.7.0 
+    #          variables: 
+    #            USERNAME: 'developer@ttrodev.co.za' 
+    #            PASSWORD: $PASSWORD 
+    #            FROM: 'developer@ttrodev.co.za' 
+    #            TO: 'anatoliiz@ttro.com,andreia@ttro.com,tariq@ttro.com' 
+    #            HOST: 'smtp.ttrodev.co.za'
+    #            SUBJECT: '${ALERT_TYPE} for bild ${BITBUCKET_BUILD_NUMBER}:Bitbucket Pipe Notification for ${BITBUCKET_BRANCH}'
+    #            ATTACHMENTS: 'lighthouse.zip'
+    # - step:
+    #     name: Backend Performance Tests
+    #     image: loadimpact/k6:latest
+    #     script: 
+    #       - if [[ $BACKEND_PERFORMANCE  == "true"  ]]; then k6 run ./TestsLogic/PerformanceTests/PerformanceBackendTestCheckableResult.js; fi
+    #       - if [[ $BACKEND_PERFORMANCE == "false" ]]; then echo "Backend performance test was skipped"; fi
+    #     services:
+    #       - docker
+    #     after-script:
+    #       - ALERT_TYPE="success"
+    #       - if [[ BITBUCKET_EXIT_CODE -ne 0 ]]; then ALERT_TYPE="Beckend performance test failed" ; fi
+    #       -  pipe: atlassian/email-notify:0.7.0 
+    #          variables: 
+    #            USERNAME: 'developer@ttrodev.co.za' 
+    #            PASSWORD: $PASSWORD 
+    #            FROM: 'developer@ttrodev.co.za' 
+    #            TO: 'anatoliiz@ttro.com,andreia@ttro.com,tariq@ttro.com' 
+    #            HOST: 'smtp.ttrodev.co.za'
+    #            SUBJECT: '${ALERT_TYPE} for bild ${BITBUCKET_BUILD_NUMBER}:Bitbucket Pipe Notification for ${BITBUCKET_BRANCH}'

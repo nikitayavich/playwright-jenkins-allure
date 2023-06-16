@@ -1,0 +1,60 @@
+[
+    {
+      "ColorSet": "'cyan'",
+      "AddressBookColorCheck": "_react=[customColor = '#29B6F6']",
+      "ColorCheck": "_react=[color = '#29B6F6']"
+    },
+    {
+      "ColorSet": "'green'",
+      "AddressBookColorCheck": "_react=[customColor = '#66BB6A']",
+      "ColorCheck": "_react=[color = '#66BB6A']"
+    },
+    {
+      "ColorSet": "'black'",
+      "AddressBookColorCheck": "_react=[customColor = '#000000']",
+      "ColorCheck": "_react=[color = '#000000']"
+    },
+    {
+      "ColorSet": "'purple'",
+      "AddressBookColorCheck": "_react=[customColor = '#7e57c2']",
+      "ColorCheck": "_react=[color = '#7e57c2']"
+    },
+    {
+      "ColorSet": "'red'",
+      "AddressBookColorCheck": "_react=[customColor = '#ef5350']",
+      "ColorCheck": "_react=[color = '#ef5350']"
+    },
+    {
+      "ColorSet": "'yellow'",
+      "CalendarColorSet": "'aquamarine'",
+      "AddressBookColorCheck": "_react=[customColor = '#ffc107']",
+      "ColorCheck": "_react=[color = '#ffc107']",
+      "CalendarColorCheck": "_react=[color = '#0097A7']"
+    },
+    {
+      "ColorSet": "'pink'",
+      "CalendarColorSet": "'magenta'",
+      "AddressBookColorCheck": "_react=[customColor = '#edaeab']",
+      "ColorCheck": "_react=[color = '#edaeab']",
+      "CalendarColorCheck": "_react=[color = '#ec407a']"
+    },
+    {
+      "ColorSet": "'gray'",
+      "CalendarColorSet": "'violet'",
+      "AddressBookColorCheck": "_react=[customColor = '#828282']",
+      "ColorCheck": "_react=[color = '#828282']",
+      "CalendarColorCheck": "_react=[color = '#5c6bc0']"
+    },
+    {
+      "ColorSet": "'blue'",
+      "CalendarColorSet": "'sage'",
+      "AddressBookColorCheck": "_react=[customColor = '#2b73d2']",
+      "ColorCheck": "_react=[color = '#2b73d2']",
+      "CalendarColorCheck": "_react=[color = '#26a69a']"
+    },
+    {
+      "ColorSet": "'orange'",
+      "AddressBookColorCheck": "_react=[customColor = '#FF7043']",
+      "ColorCheck": "_react=[color = '#FF7043']"
+    }
+  ]
