@@ -1,21 +1,16 @@
 pipeline {
-   agent { node { label 'tse-agent-latest' } }
+   agent any
    parameters {
       string defaultValue: '', description: 'Environment URL for running tests', name: 'STAGING'
       string defaultValue: '', description: 'Domain for test user accounts', name: 'DOMAIN'
       string defaultValue: '', description: 'Suite for running tests', name: 'SUITE'
     }
    stages {
-      stage('Clear test reports'){
-         steps {
-            sh(""" rm -rf $WORKSPACE/allure-results """)
-            sh(""" rm -rf $WORKSPACE/allure-report """)
-         }
-      }
+      
       stage('Installation'){
          steps {
-            sh 'npm install'
-            sh 'npx playwright install'
+            bat 'npm install'
+            bat 'npx playwright install'
          }
       }
       stage('e2e-tests'){
@@ -23,21 +18,21 @@ pipeline {
             stage('webkit') {
                steps {
                   catchError(stageResult: 'FAILURE') {
-                     sh  """ npx playwright test --project="webkit" --grep-invert='@serial' $SUITE """
+                     bat  """ npx playwright test --project="webkit" --grep-invert='@serial' $SUITE """
                   }
                }
             }
             stage('chromium') {
                steps {
                   catchError(stageResult: 'FAILURE') {
-                     sh  """ npx playwright test --project="chromium" --grep-invert='@serial' $SUITE """
+                     bat  """ npx playwright test --project="chromium" --grep-invert='@serial' $SUITE """
                   }
                }
             }
             stage('firefox') {
                steps {
                   catchError(stageResult: 'FAILURE') {
-                     sh  """ npx playwright test --project="firefox" --grep-invert='@serial' $SUITE """
+                     bat  """ npx playwright test --project="firefox" --grep-invert='@serial' $SUITE """
                      
                   }
                }
@@ -47,21 +42,21 @@ pipeline {
                  stage('webkit') {
                      steps {
                         catchError(stageResult: 'FAILURE') {
-                           sh  """ npx playwright test --workers=1 --project="webkit" --grep='@serial' $SUITE """
+                           bat  """ npx playwright test --workers=1 --project="webkit" --grep='@serial' $SUITE """
                         }
                      }
                   }
                  stage('chromium') {
                      steps {
                         catchError(stageResult: 'FAILURE') {
-                           sh  """ npx playwright test --workers=1 --project="chromium" --grep='@serial' $SUITE """
+                           bat  """ npx playwright test --workers=1 --project="chromium" --grep='@serial' $SUITE """
                         }
                      }
                   }
                  stage('firefox') {
                      steps {
                         catchError(stageResult: 'FAILURE') {
-                           sh  """ npx playwright test --workers=1 --project="firefox" --grep='@serial' $SUITE """
+                           bat  """ npx playwright test --workers=1 --project="firefox" --grep='@serial' $SUITE """
                         }
                      }
                   }
