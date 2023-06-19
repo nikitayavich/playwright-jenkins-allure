@@ -1,9 +1,9 @@
 pipeline {
    agent any
    parameters {
-      string defaultValue: '', description: 'Environment URL for running tests', name: 'STAGING'
-      string defaultValue: '', description: 'Domain for test user accounts', name: 'DOMAIN'
-      string defaultValue: '', description: 'Suite for running tests', name: 'SUITE'
+      string defaultValue: '', description: 'Environment URL for running tests!', name: 'STAGING'
+      string defaultValue: '', description: 'Domain for test user accounts!', name: 'DOMAIN'
+      string defaultValue: '', description: 'Suite for running tests!', name: 'SUITE'
     }
    stages {
       
