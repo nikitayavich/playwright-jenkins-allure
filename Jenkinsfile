@@ -9,7 +9,9 @@ pipeline {
       stage('Installation') {
          steps {
             bat 'npm install'
-            bat 'npx playwright install'
+            bat 'npx playwright install chromium'
+            bat 'npx playwright install webkit'
+            bat 'npx playwright install firefox'
          }
       }
       stage('e2e-tests') {
@@ -42,10 +44,5 @@ pipeline {
             allure([includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']]])
          }
       }
-   }
-   post {
-      failure {
-         emailext body: '$DEFAULT_CONTENT', recipientProviders: [requestor()], subject: 'Allure Report', to: 'autotests.reports@zextras.com'
-      }
-   }
+   }   
 }
