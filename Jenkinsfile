@@ -9,9 +9,8 @@ pipeline {
       stage('Installation') {
          steps {
             bat 'npm install'
-            bat 'npx playwright install chromium'
-            bat 'npx playwright install webkit'
-            bat 'npx playwright install firefox'
+            bat 'npx playwright@1.35.1 install'
+
          }
       }
       stage('e2e-tests') {
