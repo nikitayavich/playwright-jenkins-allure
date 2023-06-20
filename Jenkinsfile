@@ -42,10 +42,5 @@ pipeline {
             allure([includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']]])
          }
       }
-   }
-   post {
-      failure {
-         emailext body: '$DEFAULT_CONTENT', recipientProviders: [requestor()], subject: 'Allure Report', to: 'autotests.reports@zextras.com'
-      }
-   }
+   }   
 }
