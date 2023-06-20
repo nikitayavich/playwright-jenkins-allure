@@ -17,21 +17,21 @@ pipeline {
             stage('webkit') {
                steps {
                   catchError(stageResult: 'FAILURE') {
-                     bat  "npx playwright test --project='webkit'"
+                     bat  "npx playwright test --project=webkit"
                   }
                }
             }
             stage('chromium') {
                steps {
                   catchError(stageResult: 'FAILURE') {
-                     bat  "npx playwright test --project='chromium'"
+                     bat  "npx playwright test --project=chromium"
                   }
                }
             }
             stage('firefox') {
                steps {
                   catchError(stageResult: 'FAILURE') {
-                     bat  "npx playwright test --project='firefox'"
+                     bat  "npx playwright test --project=firefox"
                   }
                }
             }
