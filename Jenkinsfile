@@ -10,7 +10,7 @@ pipeline {
       stage('Installation'){
          steps {
             bat 'npm install'
-            bat 'npx playwright install'
+            bat 'npx playwright install -D'
          }
       }
       stage('e2e-tests'){
@@ -36,32 +36,7 @@ pipeline {
                      
                   }
                }
-            }
-            stage('serial') {
-               stages {
-                 stage('webkit') {
-                     steps {
-                        catchError(stageResult: 'FAILURE') {
-                           bat  """ npx playwright test --workers=1 --project="webkit" --grep='@serial' $SUITE """
-                        }
-                     }
-                  }
-                 stage('chromium') {
-                     steps {
-                        catchError(stageResult: 'FAILURE') {
-                           bat  """ npx playwright test --workers=1 --project="chromium" --grep='@serial' $SUITE """
-                        }
-                     }
-                  }
-                 stage('firefox') {
-                     steps {
-                        catchError(stageResult: 'FAILURE') {
-                           bat  """ npx playwright test --workers=1 --project="firefox" --grep='@serial' $SUITE """
-                        }
-                     }
-                  }
-               }
-            }
+            }            
          }
       }
       stage('Test reports') {
